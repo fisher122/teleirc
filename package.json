@@ -2,46 +2,46 @@
   "_args": [
     [
       {
-        "raw": "git://github.com/fisher122/teleirc.git#develop",
+        "raw": "git://github.com/fisher122/teleirc.git#cpap_develop",
         "scope": null,
         "escapedName": null,
         "name": null,
-        "rawSpec": "git://github.com/fisher122/teleirc.git#develop",
-        "spec": "git://github.com/fisher122/teleirc.git#develop",
+        "rawSpec": "git://github.com/fisher122/teleirc.git#cpap_develop",
+        "spec": "git://github.com/fisher122/teleirc.git#cpap_develop",
         "type": "hosted",
         "hosted": {
           "type": "github",
-          "ssh": "git@github.com:fisher122/teleirc.git#develop",
-          "sshUrl": "git+ssh://git@github.com/fisher122/teleirc.git#develop",
-          "httpsUrl": "git+https://github.com/fisher122/teleirc.git#develop",
-          "gitUrl": "git://github.com/fisher122/teleirc.git#develop",
-          "shortcut": "github:fisher122/teleirc#develop",
+          "ssh": "git@github.com:fisher122/teleirc.git#cpap_develop",
+          "sshUrl": "git+ssh://git@github.com/fisher122/teleirc.git#cpap_develop",
+          "httpsUrl": "git+https://github.com/fisher122/teleirc.git#cpap_develop",
+          "gitUrl": "git://github.com/fisher122/teleirc.git#cpap_develop",
+          "shortcut": "github:fisher122/teleirc#cpap_develop",
           "directUrl": "https://raw.githubusercontent.com/fisher122/teleirc/develop/package.json"
         }
       },
       "/usr/lib64/node_modules"
     ]
   ],
-  "_from": "git://github.com/fisher122/teleirc.git#develop",
+  "_from": "git://github.com/fisher122/teleirc.git#cpap_develop",
   "_id": "teleirc@0.4.7",
   "_inCache": true,
   "_location": "/teleirc",
   "_phantomChildren": {},
   "_requested": {
-    "raw": "git://github.com/fisher122/teleirc.git#develop",
+    "raw": "git://github.com/fisher122/teleirc.git#cpap_develop",
     "scope": null,
     "escapedName": null,
     "name": null,
-    "rawSpec": "git://github.com/fisher122/teleirc.git#develop",
-    "spec": "git://github.com/fisher122/teleirc.git#develop",
+    "rawSpec": "git://github.com/fisher122/teleirc.git#cpap_develop",
+    "spec": "git://github.com/fisher122/teleirc.git#cpap_develop",
     "type": "hosted",
     "hosted": {
       "type": "github",
-      "ssh": "git@github.com:fisher122/teleirc.git#develop",
-      "sshUrl": "git+ssh://git@github.com/fisher122/teleirc.git#develop",
-      "httpsUrl": "git+https://github.com/fisher122/teleirc.git#develop",
-      "gitUrl": "git://github.com/fisher122/teleirc.git#develop",
-      "shortcut": "github:fisher122/teleirc#develop",
+      "ssh": "git@github.com:fisher122/teleirc.git#cpap_develop",
+      "sshUrl": "git+ssh://git@github.com/fisher122/teleirc.git#cpap_develop",
+      "httpsUrl": "git+https://github.com/fisher122/teleirc.git#cpap_develop",
+      "gitUrl": "git://github.com/fisher122/teleirc.git#cpap_develop",
+      "shortcut": "github:fisher122/teleirc#cpap_develop",
       "directUrl": "https://raw.githubusercontent.com/fisher122/teleirc/develop/package.json"
     }
   },
@@ -52,7 +52,7 @@
   "_resolved": "git://github.com/fisher122/teleirc.git#226c7f82c98c9294972ffe1cfd4f7cc36c89a156",
   "_shasum": "fde4740339152ebd2e52d02c47d665d7d193864e",
   "_shrinkwrap": null,
-  "_spec": "git://github.com/fisher122/teleirc.git#develop",
+  "_spec": "git://github.com/fisher122/teleirc.git#cpap_develop",
   "_where": "/usr/lib64/node_modules",
   "bin": {
     "teleirc": "bin/teleirc"
