@@ -1,26 +1,65 @@
 {
-  "name": "teleirc",
-  "description": "Telegram <-> IRC gateway",
-  "preferGlobal": true,
+  "_args": [
+    [
+      {
+        "raw": "git://github.com/fisher122/teleirc.git#develop",
+        "scope": null,
+        "escapedName": null,
+        "name": null,
+        "rawSpec": "git://github.com/fisher122/teleirc.git#develop",
+        "spec": "git://github.com/fisher122/teleirc.git#develop",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:fisher122/teleirc.git#develop",
+          "sshUrl": "git+ssh://git@github.com/fisher122/teleirc.git#develop",
+          "httpsUrl": "git+https://github.com/fisher122/teleirc.git#develop",
+          "gitUrl": "git://github.com/fisher122/teleirc.git#develop",
+          "shortcut": "github:fisher122/teleirc#develop",
+          "directUrl": "https://raw.githubusercontent.com/fisher122/teleirc/develop/package.json"
+        }
+      },
+      "/usr/lib64/node_modules"
+    ]
+  ],
+  "_from": "git://github.com/fisher122/teleirc.git#develop",
+  "_id": "teleirc@0.4.7",
+  "_inCache": true,
+  "_location": "/teleirc",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "git://github.com/fisher122/teleirc.git#develop",
+    "scope": null,
+    "escapedName": null,
+    "name": null,
+    "rawSpec": "git://github.com/fisher122/teleirc.git#develop",
+    "spec": "git://github.com/fisher122/teleirc.git#develop",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:fisher122/teleirc.git#develop",
+      "sshUrl": "git+ssh://git@github.com/fisher122/teleirc.git#develop",
+      "httpsUrl": "git+https://github.com/fisher122/teleirc.git#develop",
+      "gitUrl": "git://github.com/fisher122/teleirc.git#develop",
+      "shortcut": "github:fisher122/teleirc#develop",
+      "directUrl": "https://raw.githubusercontent.com/fisher122/teleirc/develop/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git://github.com/fisher122/teleirc.git#226c7f82c98c9294972ffe1cfd4f7cc36c89a156",
+  "_shasum": "fde4740339152ebd2e52d02c47d665d7d193864e",
+  "_shrinkwrap": null,
+  "_spec": "git://github.com/fisher122/teleirc.git#develop",
+  "_where": "/usr/lib64/node_modules",
   "bin": {
     "teleirc": "bin/teleirc"
   },
-  "scripts": {
-    "prestart": "npm install",
-    "start": "node bin/teleirc",
-    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha",
-    "join-tg": "node src/join-tg.js"
+  "bugs": {
+    "url": "https://github.com/FruitieX/teleirc/issues"
   },
-  "version": "0.4.7",
-  "license": "MIT",
-  "repository": [
-    {
-      "type": "git",
-      "url": "https://github.com/FruitieX/teleirc.git"
-    }
-  ],
-  "bugs": "https://github.com/FruitieX/teleirc/issues",
-  "homepage": "https://github.com/FruitieX/teleirc",
   "dependencies": {
     "git-rev-sync": "^1.6.0",
     "imgur": "^0.2.0",
@@ -35,10 +74,32 @@
     "winston": "^2.2.0",
     "yargs": "^4.7.0"
   },
+  "description": "Telegram <-> IRC gateway",
   "devDependencies": {
     "jscs": "^3.0.3",
     "mocha": "^2.4.5",
     "mocha-jscs": "^5.0.0",
     "mocha-jshint": "^2.3.1"
-  }
+  },
+  "gitHead": "226c7f82c98c9294972ffe1cfd4f7cc36c89a156",
+  "homepage": "https://github.com/FruitieX/teleirc",
+  "license": "MIT",
+  "name": "teleirc",
+  "optionalDependencies": {},
+  "preferGlobal": true,
+  "readme": "![Logo](/extras/logo.png)\n\nA simple [Telegram](https://telegram.org/) ↔ IRC gateway.\n\n* [Changelog](https://fruitiex.org/blog/tag/teleirc/)\n* Official IRC channel: [#teleirc @ irc.freenode.net](https://kiwiirc.com/client/irc.freenode.net:+6697/#teleirc)\n* Official Telegram group: Run `teleirc --join-tg` for URL (to prevent spambots)\n\n[![Build Status](https://travis-ci.org/FruitieX/teleirc.svg?branch=develop)](https://travis-ci.org/FruitieX/teleirc)\n[![npm module](https://img.shields.io/npm/v/teleirc.svg?style=flat)](https://www.npmjs.com/package/teleirc)\n[![dependencies](https://david-dm.org/fruitiex/teleirc.svg)](https://david-dm.org/fruitiex/teleirc#info=Dependencies)\n[![devDependencies](https://david-dm.org/fruitiex/teleirc/dev-status.svg)](https://david-dm.org/fruitiex/teleirc#info=devDependencies)\n\n#### Features:\n\n* Supports multiple IRC channel ↔ Telegram group pairs\n* Telegram messages are always relayed to their respective IRC channel\n* IRC messages can be configured either to be relayed always, or only when the\n  bot is hilighted via a configurable regexp\n* Supports Telegram media files, URL to file sent to IRC\n\nRequirements\n------------\n\nOn Ubuntu:\n```\nsudo apt-get install libicu-dev\n```\n\n\nQuick start\n-----------\n\nMake sure you've installed Node.js.\n\n1. Install the teleirc npm module with `npm install -g teleirc` (might need\n   sudo)\n2. Generate a default config using `teleirc --genconfig`\n   NOTE: if this step fails, try `mkdir ~/.teleirc` and run the command again (FIXME).\n3. Set up your bot with [BotFather](https://telegram.me/botfather)\n4. Use the `/setprivacy` command with `BotFather` to allow your bot to see all\n   messages in your group (NOTE on usage: bot name is preceded by @ sign and\n   'Disable' is case-sensitive)\n5. Edit the default config `$EDITOR ~/.teleirc/config.js`\n6. Run `teleirc`\n7. Invite your bot to any Telegram groups you've configured it for\n8. Greet your bot once on each of your Telegram groups :tada:! This is needed\n   to fetch (and store!) an internally used group ID, making communication from\n   IRC to the correct Telegram group possible.\n\nOptional:\n\n- For your convenience, there is an included systemd unit file:\n  [teleirc.service](extras/teleirc.service)\n- You can change your Telegram Bot's profile picture with the `/setuserpic`\n  BotFather command. [Here's](/extras/icon.png) an example icon for you.\n- You can tell Telegram which commands the teleirc bot supports by using the\n  `/setcommands` BotFather command. You may copy-paste the contents of\n  [`commands.txt`](/extras/commands.txt) to show all supported commands to\n  Telegram clients.\n- Instead of enabling the HTTP server for serving sent media files, photo files\n  sent to the groups can be uploaded to [Imgur](http://imgur.com/). See the\n  [README for Imgur](extras/Imgur_README.md) for more information.\n\nTroubleshooting\n---------------\n\n1. Check your system clock. By default if a Telegram message's timestamp is\n   older than one minute compared to your system clock, the message is skipped.\n   You can configure this behaviour via `config.maxMsgAge`.\n2. Make sure your Telegram group's name and IRC channel has been entered\n   correctly in your config (case sensitive!)\n3. Run with verbose flags to see more output: `teleirc -vvv`\n\nContributing\n------------\n\nSee [CONTRIBUTING.md](CONTRIBUTING.md) for developer info\n\nDocker install\n--------------\n\nSee the [README for Docker](extras/Docker_README.md)\n",
+  "readmeFilename": "README.md",
+  "repository": [
+    {
+      "type": "git",
+      "url": "https://github.com/FruitieX/teleirc.git"
+    }
+  ],
+  "scripts": {
+    "join-tg": "node src/join-tg.js",
+    "prestart": "npm install",
+    "start": "node bin/teleirc",
+    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha"
+  },
+  "version": "0.4.7"
 }

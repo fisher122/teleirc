@@ -143,10 +143,10 @@ var init = function(msgCallback) {
         var message = ircUtil.parseMsg(chanName, text);
 
         if (message) {
-            var messageText = user + ': ' + message.text;
-            if (config.emphasizeAction) {
-                messageText = '*' + messageText + '*';
-            }
+            var messageText = '<b>* ' + user + '</b> ' + message.text; //HTML formatting
+            //if (config.emphasizeAction) { //broken emphasizeAction option
+            //    messageText = '*' + messageText + '*';
+            //}
 
             msgCallback({
                 protocol: 'irc',
@@ -195,7 +195,7 @@ var init = function(msgCallback) {
             type: 'join',
             channel: channel,
             user: null,
-            text: user + ' has joined'
+            text: '<code>' + user + '</code> has joined' //HTML formatting
         });
     });
 
@@ -214,7 +214,7 @@ var init = function(msgCallback) {
             type: 'part',
             channel: channel,
             user: null,
-            text: user + ' has left'
+            text: '<code>' + user + '</code> has left' //HTML formatting
         });
     });
 
@@ -234,7 +234,7 @@ var init = function(msgCallback) {
             type: 'part',
             channel: channel,
             user: null,
-            text: user + ' was kicked by ' + by + ' (' + reason + ')',
+            text: '<code>' + user + '</code> was kicked by ' + '<code>' + by + '</code> <b>(' + reason + ')</b>', //HTML formatting
         });
     });
 
@@ -257,7 +257,7 @@ var init = function(msgCallback) {
             protocol: 'irc',
             channel: channel,
             user: '',
-            text: 'Users in ' + event.target + ':\n\n' + users
+            text: 'Users in ' + event.target + ':\n\n<b>' + users + '</b>' //HTML formatting
         });
     });
 

@@ -376,7 +376,7 @@ exports.parseMsg = function(msg, myUser, tg, callback) {
         exports.serveFile(msg.audio.file_id, config, tg, function(url) {
             callback({
                 channel: channel,
-                text: prefix + '(Audio, ' + msg.audio.duration + 's)' + url
+                text: prefix + '(Audio, ' + msg.audio.duration + 's) ' + url
             });
         });
     } else if (msg.document) {

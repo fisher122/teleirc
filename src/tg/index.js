@@ -2,8 +2,11 @@ var Telegram = require('node-telegram-bot-api');
 var config = require('../config');
 var tgUtil = require('./util');
 var logger = require('winston');
+var shared = require('../shared.js');
 
 var myUser = {};
+
+var prvusersmsg = true;
 
 var init = function(msgCallback) {
     // start HTTP server for media files if configured to do so
@@ -38,6 +41,8 @@ var init = function(msgCallback) {
                     msgCallback(message);
                 }
             });
+	    prvusersmsg = true;
+	    console.log(prvusersmsg)
         });
     });
 
@@ -63,13 +68,53 @@ var init = function(msgCallback) {
                 return;
             }
 
-            if (message.user) {
-                message.text = '<' + message.user + '> ' + message.text;
+	    userTG = '';
+            userTGLegacy = '';
+
+	    if(message.user && shared.lastUserShared != message.user && message.user != null || prvusersmsg == true && message.user != null && message.user){//changing username
+                console.log("переменная сукаблять");
+		console.log(prvusersmsg);
+		logger.verbose("\nNEW USERNAME:\nuser:"+shared.lastUserShared+", new:"+message.user+"\n\n");
+		shared.lastUserShared = message.user;
+                //userTG = '`'+shared.lastUserShared+'` said: '+"\n";
+                //userTGLegacy = '<'+shared.lastUserShared+'> said: '+"\n";
+		userTGLegacy = '['+shared.lastUserShared+'] said: '+"\n";
+		userTG = '[<code>'+shared.lastUserShared+'</code>] said: '+"\n";
+            } else if(!message.user){
+	    	logger.verbose("missing username; probably message from ourselves");
+		prvusersmsg = true;
+		shared.lastUserShared = 0;
+	    } else{
+                logger.verbose("\nUSERNAME NOT CHANGED:\nuser:"+shared.lastUserShared+", new:"+message.user+"\n\n");
             }
 
+            //if (message.user) {
+            //    message.text = '[' + message.user + '] ' + message.text;
+            //}
+
+	    var options = {};
+	    options.parse_mode = 'HTML';
+
             logger.verbose('>> relaying to TG:', message.text);
-            tg.sendMessage(message.channel.tgChatId, message.text);
-        }
+            //tg.sendMessage(message.channel.tgChatId, message.text, {parse_mode: "HTML"});
+	    var msgtotg = tg.sendMessage(message.channel.tgChatId, userTG + message.text, options);
+
+	    msgtotg.then(
+                ok => {
+		    prvusersmsg = false;
+                    console.log(prvusersmsg)
+		    //console.log("ok")
+                    //console.log(message)
+                },
+                error => {
+		    prvusersmsg = false;
+		    console.log(prvusersmsg)
+                    //console.log("error")
+                    //console.log(message)
+                    tg.sendMessage(message.channel.tgChatId, userTGLegacy + message.text);//try again?
+                }
+            );
+	}
     };
 };
 
