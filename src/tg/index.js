@@ -2,8 +2,10 @@ var Telegram = require('node-telegram-bot-api');
 var config = require('../config');
 var tgUtil = require('./util');
 var logger = require('winston');
+var shared = require('../shared');
 
 var myUser = {};
+
 
 var init = function(msgCallback) {
     // start HTTP server for media files if configured to do so
@@ -51,12 +53,69 @@ var init = function(msgCallback) {
                 return;
             }
 
-            if (message.user) {
-                message.text = '<' + message.user + '> ' + message.text;
-            }
+            /*
 
             logger.verbose('>> relaying to TG:', message.text);
-            tg.sendMessage(message.channel.tgChatId, message.text);
+            var options = {};
+            options.parse_mode = 'Markdown';
+            userTG = '';
+            userTGLegacy = '';
+            if(lastUser != message.user){//changing username
+                logger.verbose("\nNEW USERNAME:\nuser:"+lastUser+", new:"+message.user+"\n\n");
+                lastUser = message.user;
+                userTG = '`'+lastUser+'` said: '+"\n";
+                userTGLegacy = '<'+lastUser+'> said: '+"\n";
+                tg.sendMessage(message.channel.tgChatId, userTG, options);
+            }else{
+                logger.verbose("\nUSERNAME NOT CHANGED:\nuser:"+lastUser+", new:"+message.user+"\n\n");
+            }
+
+const timer = ms => new Promise( res => setTimeout(res, ms));
+Then we can simply use it:
+
+console.log("wait 3 seconds")
+timer(3000).then(_=>console.log("done"));
+
+
+blablbalba костыли костылики
+
+
+            */
+
+
+
+            userTG = '';
+            userTGLegacy = '';
+            if(shared.lastUserShared != message.user || shared.lastUserForce == true){//changing username
+                logger.verbose("\nNEW USERNAME:\nuser:"+shared.lastUserShared+", new:"+message.user+"\n\n");
+                shared.lastUserShared = message.user;
+                userTG = '`'+shared.lastUserShared+'` said: '+"\n";
+                userTGLegacy = '<'+shared.lastUserShared+'> said: '+"\n";
+                lastUserForce = false;
+            }else{
+                logger.verbose("\nUSERNAME NOT CHANGED:\nuser:"+shared.lastUserShared+", new:"+message.user+"\n\n");
+            }
+
+
+            var options = {};
+            options.parse_mode = 'Markdown';
+	        //options.parse_mode = 'HTML';
+            logger.verbose('>> relaying to TG:', message.text);
+
+
+            var autizmopromise = tg.sendMessage(message.channel.tgChatId, userTG + message.text, options);
+
+            autizmopromise.then(
+                ok => {
+                    //console.log("ok")
+                    //console.log(message)
+                },
+                error => {
+                    //console.log("error")
+                    //console.log(message)
+                    tg.sendMessage(message.channel.tgChatId, userTGLegacy + message.text);//try again?
+                }
+            );
         }
     };
 };

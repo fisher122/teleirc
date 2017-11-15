@@ -8,6 +8,8 @@ var mkdirp = require('mkdirp');
 var crypto = require('crypto');
 var logger = require('winston');
 
+var shared = require('../shared');
+
 var chatIdsPath = path.join(osHomedir(), '.teleirc');
 
 exports.readChatId = function(channel) {
@@ -61,6 +63,18 @@ exports.getName = function(user, config) {
 
     // get rid of leading and trailing whitespace
     name = name.replace(/(^\s*)|(\s*$)/g, '');
+
+    if(shared.lastUserShared != name || shared.lastUserForce == true){//changing username
+        logger.verbose("\nNEW USERNAME from tg:\nuser:"+shared.lastUserShared+", new:"+name+"\n\n");
+        shared.lastUserShared = name;
+        shared.lastUserForce = false;
+    }else{
+        logger.verbose("\nUSERNAME NOT CHANGED tg:\nuser:"+shared.lastUserShared+", new:"+name+"\n\n");
+    }
+
+    //name = "user.title:" + user.title + "\nuser.username:" + user.username + "\nuser.first_name:" +user.first_name + "\nuser.last_name:" + user.last_name;
+
+
 
     if (config.nickcolor) {
         return nickcolor(name);
